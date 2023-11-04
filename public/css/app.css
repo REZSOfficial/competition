@@ -1,0 +1,39 @@
+body {
+    background-color: #C4AF9A !important;
+}
+
+* {
+    font-family: Nunito !important;
+}
+
+a {
+    font-size: 1.3em;
+    color: grey !important;
+    text-decoration: none !important;
+    text-emphasis: none !important;
+}
+
+a {
+    border: 0 !important;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px !important;
+    background-color: #332D2D !important;
+    color: #C4AF9A !important;
+}
+
+.jumbotron {
+    color: #C4AF9A !important;
+}
+
+.nav-tabs {
+    border: 0 !important;
+}
+
+.addBtn {
+    background-color: #332D2D !important;
+    color: #C4AF9A !important;
+}
