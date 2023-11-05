@@ -15,20 +15,20 @@
             <input name="user_lastname" type="text" class="form-control" id="user_lastname" placeholder="Enter Last Name">
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input name="email" type="text" class="form-control" id="email" aria-describedby="sportHelp" placeholder="Email">
+            <label for="user_email">Email</label>
+            <input name="user_email" type="text" class="form-control" id="user_email" aria-describedby="sportHelp" placeholder="Email">
           </div>
           <div class="form-group">
             <label for="round_competition_name">Competition Name</label>
-            <input name="round_competition_name" type="text" class="form-control" id="round_competition_name" aria-describedby="prizeHelp" placeholder="Competition Name">
+            <input readonly value="{{$data['competition']->name}}" name="round_competition_name" type="text" class="form-control" id="round_competition_name" aria-describedby="prizeHelp" placeholder="Competition Name">
           </div>
           <div class="form-group">
             <label for="round_competition_date">Competition Date</label>
-            <input name="round_competition_date" type="date" class="form-control" id="round_competition_date" aria-describedby="prizeHelp" placeholder="Competition Date">
+            <input readonly value="{{$data['competition']->date}}" name="round_competition_date" type="date" class="form-control" id="round_competition_date" aria-describedby="prizeHelp" placeholder="Competition Date">
           </div>
           <div class="form-group">
             <label for="round_competition_round">Competition Round</label>
-            <input name="round_competition_round" type="number" class="form-control" id="round_competition_round" aria-describedby="prizeHelp" placeholder="Competition Round">
+            <input readonly value="{{$data['round']}}" name="round_competition_round" type="number" class="form-control" id="round_competition_round" aria-describedby="prizeHelp" placeholder="Competition Round">
           </div>
           <button type="submit" class="btn addBtn">Submit</button>
         

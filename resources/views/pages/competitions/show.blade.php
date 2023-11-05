@@ -25,9 +25,9 @@
                     @foreach($data['competitors'] as $competitor)
                         @if($competitor->round_competition_round == $round->round)
                         <p class="dropdown-item mb-0">{{$competitor->user_firstname}} {{$competitor->user_lastname}}</p>
-                        <p><a href="/competitions/{{$data['competition']->id}}/{{$round->round}}/add">Add Competitor {{$round->round}}</a></p>
                         @endif
                     @endforeach
+                    <p><a href="/competitions/{{$data['competition']->id}}/{{$round->round}}/add">Add Competitor</a></p>
                 </div>
               </div>
             </td>

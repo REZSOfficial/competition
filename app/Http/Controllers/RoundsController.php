@@ -17,6 +17,15 @@ class RoundsController extends Controller
         return $rounds;
     }
 
+    public static function getRoundByCompetitionAndRound($competition, $round){
+        $rounds = DB::table('rounds')
+        ->where('competition_name', $competition->name)
+        ->where('competition_date', $competition->date)
+        ->where('round', $round)
+        ->get();
+        return $round;
+    }
+
     public function create(Competition $competition){
         return view('pages.competitions/createround', compact('competition'));
     }
