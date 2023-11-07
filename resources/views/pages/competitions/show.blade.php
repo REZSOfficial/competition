@@ -21,17 +21,18 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{$round->round}}
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="competitors-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @foreach($data['competitors'] as $competitor)
                         @if($competitor->round_competition_round == $round->round)
-                        <p class="dropdown-item mb-0">{{$competitor->user_firstname}} {{$competitor->user_lastname}}</p>
+                        <p class="competitor-item dropdown-item mb-0">{{$competitor->user_firstname}} {{$competitor->user_lastname}}</p>
                         @endif
                     @endforeach
-                    <p><a href="/competitions/{{$data['competition']->id}}/{{$round->round}}/add">Add Competitor</a></p>
+                    <hr color="#C4AF9A" class="my-4">
+                    <p><a class="mx-3 competitor-item" href="/competitions/{{$data['competition']->id}}/{{$round->round}}/add">Add Competitor</a></p>
                 </div>
               </div>
             </td>
-            <td><button class="btn addBtn"><a class="addBtn" href="/competitions/{{$data['competition']->id}}/createround">Add Round</a></button></td>
+            <td><button class="btn addBtn"><a class="addBtn hover" href="/competitions/{{$data['competition']->id}}/createround">Add Round</a></button></td>
           </tr>
         @endforeach
     </tbody>

@@ -6,18 +6,17 @@
 
     <form method="POST" action="/competitors">
         @csrf
-        <div class="form-group">
-            <label for="user_firstname">First Name</label>
-            <input name="user_firstname" type="text" class="form-control" id="user_firstname" aria-describedby="emailHelp" placeholder="Enter First Name">
+          <div class="form-group form-select">
+            <label for="select_user">Select User</label>
+            <select name="user" class="form-select form-select-lg mb-3" aria-label="Default select example">
+              @foreach ($data['users'] as $user)
+                <option value="{{$user->email}} {{$user->firstname}} {{$user->lastname}}">{{$user->firstname}} {{$user->lastname}}</option>  
+              @endforeach
+            </select>
           </div>
-          <div class="form-group">
-            <label for="user_lastname">Last Name</label>
-            <input name="user_lastname" type="text" class="form-control" id="user_lastname" placeholder="Enter Last Name">
-          </div>
-          <div class="form-group">
-            <label for="user_email">Email</label>
-            <input name="user_email" type="text" class="form-control" id="user_email" aria-describedby="sportHelp" placeholder="Email">
-          </div>
+          
+
+
           <div class="form-group">
             <label for="round_competition_name">Competition Name</label>
             <input readonly value="{{$data['competition']->name}}" name="round_competition_name" type="text" class="form-control" id="round_competition_name" aria-describedby="prizeHelp" placeholder="Competition Name">

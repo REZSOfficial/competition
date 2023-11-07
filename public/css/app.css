@@ -37,3 +37,32 @@ table {
     background-color: #332D2D !important;
     color: #C4AF9A !important;
 }
+
+.hover {
+    transition-duration: 200ms;
+    border-radius: 3px;
+}
+
+.hover:hover {
+    background-color: #C4AF9A !important;
+    color: #332D2D !important;
+    transition-duration: 200ms;
+}
+
+.competitors-dropdown {
+    background-color: #C4AF9A !important;
+    border: 2px solid #332D2D !important;
+}
+
+.competitor-item {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #332D2D !important;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}

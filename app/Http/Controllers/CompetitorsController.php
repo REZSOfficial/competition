@@ -13,25 +13,28 @@ class CompetitorsController extends Controller
 {
     public function create(Competition $competition, $id){
         $round = RoundsController::getRoundByCompetitionAndRound($competition, $id);
+        $users = UsersController::all();
         $data = [
             'competition' => $competition,
             'round' => $round,
+            'users' => $users,
         ];
 
         return view('pages.competitors.create', compact('data'));
     }
 
     public function store(Request $request){
-        $formFields = $request->validate([
-            'user_email' => ['required'],
-            'user_firstname' => ['required'],
-            'user_lastname' => ['required'],
-            'round_competition_name' => ['required'],
-            'round_competition_date' => ['required'],
-            'round_competition_round' => ['required'],
-        ]);
+        $user_data = explode(" ", $request->user);
+        $create_data = [
+            'user_email' => $user_data[0],
+            'user_firstname' => $user_data[1],
+            'user_lastname' => $user_data[2],
+            'round_competition_name' => $request->round_competition_name,
+            'round_competition_date' => $request->round_competition_date,
+            'round_competition_round' => $request->round_competition_round,
+        ];
 
-        $competitor = Competitor::create($formFields);
+        $competitor = Competitor::create($create_data);
         return redirect('/competitions')->with('message', 'Competitor added');
 
     }

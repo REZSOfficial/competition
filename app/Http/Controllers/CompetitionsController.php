@@ -32,7 +32,6 @@ class CompetitionsController extends Controller
     
 
     public function store(Request $request){
-        dd($request);
         $formFields = $request->validate([
             'name' => ['required'],
             'date' => ['required'],
