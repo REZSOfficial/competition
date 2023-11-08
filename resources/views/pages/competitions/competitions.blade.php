@@ -29,4 +29,7 @@
 @endif
 <button class="btn addBtn"><a class="addBtn" href="/competitions/create">Create Competition</a></button>
 </div>
+@if (session('message'))
+  <div class="alert">{{ session('message') }}</div>
+@endif
   @endsection

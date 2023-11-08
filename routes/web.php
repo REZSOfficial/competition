@@ -26,7 +26,7 @@ Route::post("/competitions", [CompetitionsController::class, 'store']);
 
 Route::get('/competitions/{competition}/createround', [RoundsController::class, 'create']);
 
-Route::post("/competitions", [RoundsController::class, 'store']);
+Route::post("/rounds", [RoundsController::class, 'store']);
 
 
 

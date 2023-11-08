@@ -34,9 +34,15 @@ class CompetitorsController extends Controller
             'round_competition_round' => $request->round_competition_round,
         ];
 
-        $competitor = Competitor::create($create_data);
-        return redirect('/competitions')->with('message', 'Competitor added');
+        $isAdded = Competitor::isCompetitorAdded($user_data[0], $request->round_competition_round, $request->round_competition_name, $request->round_competition_date);
 
+        if(!$isAdded){
+            $competitor = Competitor::create($create_data);
+            return redirect('/competitions/'.$request->competition_id)->with('message', 'Competitor added');
+        }else{
+            return redirect('/competitions/'.$request->competition_id)->with('error', 'Competitor already added');
+        }
+       
     }
 
     public static function getCompetitorsByRound($rounds){

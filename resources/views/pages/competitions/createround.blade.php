@@ -4,7 +4,7 @@
 <div class="mt-4">
     <h1 style="color: #332D2D;">Create Round</h1>
 
-    <form method="POST" action="/competitions">
+    <form method="POST" action="/rounds">
         @csrf
         <div class="form-group">
             <label for="name">Competition Name</label>
@@ -19,6 +19,7 @@
             <label for="round">Round</label>
             <input name="round" type="number" class="form-control" id="sport" aria-describedby="sportHelp" placeholder="Round">
           </div>
+          <input style="display: none" readonly  type="number" name="competition_id" id="competition_id" value="{{$competition->id}}">
           <button type="submit" class="btn addBtn">Submit</button>
         
     </form>

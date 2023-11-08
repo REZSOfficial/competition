@@ -37,6 +37,12 @@
         @endforeach
     </tbody>
   </table>
+  @if (session('message'))
+  <div class="alert">{{ session('message') }}</div>
+@endif
+@if (session('error'))
+  <div class="alert">{{ session('error') }}</div>
+@endif
   @else
 <h1>No rounds in competition</h1>
 <td><button class="btn addBtn"><a class="addBtn" href="/competitions/{{$data['competition']->id}}/createround">Add Round</a></button></td>

@@ -29,6 +29,7 @@
             <label for="round_competition_round">Competition Round</label>
             <input readonly value="{{$data['round']}}" name="round_competition_round" type="number" class="form-control" id="round_competition_round" aria-describedby="prizeHelp" placeholder="Competition Round">
           </div>
+          <input style="display: none" readonly  type="number" name="competition_id" id="competition_id" value="{{$data['competition']->id}}">
           <button type="submit" class="btn addBtn">Submit</button>
         
     </form>

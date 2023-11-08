@@ -41,7 +41,6 @@ class CompetitionsController extends Controller
 
         $competition = Competition::create($formFields);
         return redirect('/competitions')->with('message', 'Competition Created');
-
     }
 
     

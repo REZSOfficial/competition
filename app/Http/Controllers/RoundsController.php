@@ -38,7 +38,7 @@ class RoundsController extends Controller
         ]);
 
         $round = Round::create($formFields);
-        return redirect('/competitions')->with('message', 'Round Created');
+        return redirect('/competitions/'.$request->competition_id)->with('message', 'Round Created');
 
     }
 }
