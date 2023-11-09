@@ -26,6 +26,16 @@ class RoundsController extends Controller
         return $round;
     }
 
+    public static function isAdded($competition_name,$competition_date, $round){
+        $rounds = DB::table('rounds')
+        ->where('competition_name', $competition_name)
+        ->where('competition_date', $competition_date)
+        ->where('round', $round)
+        ->get();
+        
+        return count($rounds) != 0;
+    }
+
     public function create(Competition $competition){
         return view('pages.competitions/createround', compact('competition'));
     }
@@ -37,8 +47,10 @@ class RoundsController extends Controller
             'round' => ['required'],
         ]);
 
-        $round = Round::create($formFields);
-        return redirect('/competitions/'.$request->competition_id)->with('message', 'Round Created');
-
+        if(!RoundsController::isAdded($request->competition_name, $request->competition_date, $request->round)){
+            $round = Round::create($formFields);
+            return redirect('/competitions/'.$request->competition_id)->with('message', 'Round Created');
+        }
+        return redirect('/competitions/'.$request->competition_id)->with('addedError', 'Round already created');
     }
 }

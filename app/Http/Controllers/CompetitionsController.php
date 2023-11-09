@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Exception;
 use App\Models\Competition;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompetitionsController extends Controller
 {
@@ -39,8 +41,21 @@ class CompetitionsController extends Controller
             'prize' => ['required'],
         ]);
 
-        $competition = Competition::create($formFields);
-        return redirect('/competitions')->with('message', 'Competition Created');
+        if(!CompetitionsController::isAdded($request->name) && $request->prize <= 9999999999){
+            $competition = Competition::firstOrCreate($formFields);
+            return redirect('/competitions')->with('message', 'Competition Created');
+        }else{
+            return redirect('/competitions/create')->with('error', 'Competition name already taken');
+        }
+
+        
+    }
+
+    public static function isAdded($name){
+        $comps = DB::table('competitions')
+        ->where('name', $name)->get();
+
+        return count($comps) != 0;
     }
 
     
