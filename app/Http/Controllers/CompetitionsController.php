@@ -43,7 +43,7 @@ class CompetitionsController extends Controller
 
         if(!CompetitionsController::isAdded($request->name) && $request->prize <= 9999999999){
             $competition = Competition::firstOrCreate($formFields);
-            return redirect('/competitions')->with('message', 'Competition Created');
+            return response()->json(['message' => 'Competition created successfully']);
         }else{
             return redirect('/competitions/create')->with('error', 'Competition name already taken');
         }
