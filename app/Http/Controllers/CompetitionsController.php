@@ -23,8 +23,8 @@ class CompetitionsController extends Controller
 
     public function show(Competition $competition){
         $rounds = Round::getRoundsByCompetition($competition);
-        $competitors = Competitor::getCompetitorsByRound($rounds);
-
+        $competitors = Competitor::getCompetitorsByRound($rounds[0]);
+        
         $data = [
             'competition' => $competition,
             'rounds' => $rounds,
@@ -42,8 +42,8 @@ class CompetitionsController extends Controller
             'sport' => ['required'],
             'prize' => ['required'],
         ]);
-
-        if(!Competition::isAdded($request->name) && $request->prize <= 9999999999){
+        
+        if(!Competition::where('name', $request->name)->exists() && $request->prize <= 9999999999){
             $competition = Competition::firstOrCreate($formFields);
             return response()->json(['message' => 'Competition created successfully', 'redirect' => '/competitions']);
         }else{

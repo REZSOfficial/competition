@@ -16,7 +16,7 @@
           </div>
           <input style="display: none" readonly type="number" name="competition_id" id="competition_id" value="{{$competition->id}}">
           <button type="submit" class="btn addBtn" onclick="submitCreateRoundForm()">Submit</button>
-        
+          <div id="round-error" class="alert alert-danger"></div>
     </form>
 
 </div>

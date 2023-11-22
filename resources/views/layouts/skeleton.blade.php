@@ -17,8 +17,7 @@
         <script type="text/javascript" src="{{ URL::asset('js/ajax-scripts.js') }}"></script>
     </head>
     <body>
-        @include('inc.navbar')
-        <div class="container">
+        <div>
             @yield('content')
         </div>
     </body>

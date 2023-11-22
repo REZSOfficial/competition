@@ -159,7 +159,13 @@ function submitCreateRoundForm() {
             'X-CSRF-TOKEN': CSRF_TOKEN
         },
         success: function (response) {
-            routeToCompetitionInfo($('#competition_id').val());
+            if (response.message === 'Round already exists') {
+                $('#round-error').text(response.message);
+                $('#round-error').show();
+            } else {
+                routeToCompetitionInfo($('#competition_id').val());
+            }
+
         },
         error: function (error) {
             console.log("err");

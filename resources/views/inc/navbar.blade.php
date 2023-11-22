@@ -8,7 +8,7 @@
     <li class="nav-item dropdown d-none d-sm-block d-md-none d-block d-sm-none">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" onclick="routeToCompetitions()">Home</a>
+        <a class="dropdown-item" onclick="routeToHome()">Home</a>
         <a class="dropdown-item" onclick="routeToCompetitions()" role="button">Competitions</a>
       </div>
     </li>

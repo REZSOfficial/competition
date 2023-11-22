@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class RoundsController extends Controller
 {
-    
-
     public function create(Competition $competition){
         return view('pages.competitions/createround', compact('competition'));
     }
@@ -22,7 +20,7 @@ class RoundsController extends Controller
             'round' => ['required'],
         ]);
 
-        if(!Round::isAdded($request->competition_name, $request->competition_date, $request->round)){
+        if(!Round::where('competition_name', $request->competition_name)->where('competition_date', $request->competition_date)->where('round', $request->round)->exists()){
             $round = Round::create($formFields);
             return response()->json(['message' => 'Round created successfully']);
         }

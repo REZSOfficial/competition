@@ -11,8 +11,7 @@ use App\Http\Controllers\RoundsController;
 
 class CompetitorsController extends Controller
 {
-    public function create(Competition $competition, $id){
-        $round = Round::getRoundByCompetitionAndRound($competition, $id);
+    public function create(Competition $competition, $round){
         $users = UsersController::all();
         $data = [
             'competition' => $competition,
@@ -33,9 +32,10 @@ class CompetitorsController extends Controller
             'round_competition_round' => $request->round_competition_round,
         ];
 
-        $isAdded = Competitor::isCompetitorAdded($request->user_email, $request->round_competition_round, $request->round_competition_name, $request->round_competition_date);
-
-        if(!$isAdded){
+        if(!Competitor::where('round_competition_name', $request->round_competition_name)
+        ->where('round_competition_date', $request->round_competition_date)
+        ->where('round_competition_round', $request->round_competition_round)
+        ->where('user_email', $request->user_email)->exists()){
             $competitor = Competitor::create($create_data);
             return response()->json(['message' => 'Competitor added successfully']);
         }else{

@@ -1,8 +1,9 @@
 @extends('layouts.skeleton')
 @section('content')
+@include('inc.navbar')
 
-<div id="content">
-<div id="jumbotron" style="color: #C4AF9A" class="jumbotron mt-4 bg-dark">
+<div id="content" class="container">
+  <div id="jumbotron" style="color: #C4AF9A" class="jumbotron mt-4 bg-dark">
     <h1 class="display-4">Competitions</h1>
     <p class="lead">In this application you can create and manage competitions and competitors.</p>
     <hr color="#C4AF9A" class="my-4">
@@ -13,6 +14,4 @@
     </p>
   </div>
 </div>
-
-
 @endsection
