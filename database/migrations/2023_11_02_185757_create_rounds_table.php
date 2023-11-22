@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rounds', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('competition_name');
             $table->date('competition_date');
             $table->integer('round');
-            $table->timestamps();
         });
     }
 

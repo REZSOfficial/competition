@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('competitions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->date('date');
+            $table->date('date')->unique();
             $table->string('sport');
             $table->integer('prize');
         });

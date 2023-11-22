@@ -9,32 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class RoundsController extends Controller
 {
-    public static function getRoundsByCompetition($competition){
-        $rounds = DB::table('rounds')
-        ->where('competition_name', $competition->name)
-        ->where('competition_date', $competition->date)
-        ->get();
-        return $rounds;
-    }
-
-    public static function getRoundByCompetitionAndRound($competition, $round){
-        $rounds = DB::table('rounds')
-        ->where('competition_name', $competition->name)
-        ->where('competition_date', $competition->date)
-        ->where('round', $round)
-        ->get();
-        return $round;
-    }
-
-    public static function isAdded($competition_name,$competition_date, $round){
-        $rounds = DB::table('rounds')
-        ->where('competition_name', $competition_name)
-        ->where('competition_date', $competition_date)
-        ->where('round', $round)
-        ->get();
-        
-        return count($rounds) != 0;
-    }
+    
 
     public function create(Competition $competition){
         return view('pages.competitions/createround', compact('competition'));
@@ -47,10 +22,10 @@ class RoundsController extends Controller
             'round' => ['required'],
         ]);
 
-        if(!RoundsController::isAdded($request->competition_name, $request->competition_date, $request->round)){
+        if(!Round::isAdded($request->competition_name, $request->competition_date, $request->round)){
             $round = Round::create($formFields);
-            return redirect('/competitions/'.$request->competition_id)->with('message', 'Round Created');
+            return response()->json(['message' => 'Round created successfully']);
         }
-        return redirect('/competitions/'.$request->competition_id)->with('addedError', 'Round already created');
+        return response()->json(['message' => 'Round already exists']);
     }
 }

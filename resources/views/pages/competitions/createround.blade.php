@@ -1,11 +1,6 @@
-@extends('layouts.skeleton')
-@section('content')
-
 <div class="mt-4">
     <h1 style="color: #332D2D;">Create Round</h1>
-
-    <form method="POST" action="/rounds">
-        @csrf
+    <form id="createRoundForm">
         <div class="form-group">
             <label for="name">Competition Name</label>
             <input readonly name="competition_name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" value="{{$competition->name}}">
@@ -17,13 +12,11 @@
           </div>
           <div class="form-group">
             <label for="round">Round</label>
-            <input name="round" type="number" class="form-control" id="sport" aria-describedby="sportHelp" placeholder="Round">
+            <input name="round" type="number" class="form-control" id="round" aria-describedby="sportHelp" placeholder="Round">
           </div>
-          <input style="display: none" readonly  type="number" name="competition_id" id="competition_id" value="{{$competition->id}}">
-          <button type="submit" class="btn addBtn">Submit</button>
+          <input style="display: none" readonly type="number" name="competition_id" id="competition_id" value="{{$competition->id}}">
+          <button type="submit" class="btn addBtn" onclick="submitCreateRoundForm()">Submit</button>
         
     </form>
 
 </div>
-
-@endsection

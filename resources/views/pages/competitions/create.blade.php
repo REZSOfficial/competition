@@ -1,5 +1,3 @@
-@extends('layouts.skeleton')
-@section('content')
 <div class="mt-4">
     <h1 style="color: #332D2D;">Create Competition</h1>
 
@@ -32,5 +30,3 @@
     </form>
 
 </div>
-
-@endsection

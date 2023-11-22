@@ -1,5 +1,3 @@
-@extends('layouts.skeleton')
-@section('content')
 <div class="mt-4">
 <h1 style="color: #332D2D !important">Competitions</h1>
 @if(count($competitions) >= 1)
@@ -15,7 +13,7 @@
     <tbody>
         @foreach ($competitions as $competition)
         <tr>
-            <th  scope="row"><a style="color: #C4AF9A !important" onclick="routeToCompetitionInfo($competition->id)" href="/competitions/{{$competition->id}}">{{$competition->name}}</a></th>
+            <th  scope="row"><a style="color: #C4AF9A !important" onclick="routeToCompetitionInfo({{$competition->id}})">{{$competition->name}}</a></th>
             <td>{{$competition->date}}</td>
             <td>{{$competition->sport}}</td>
             <td>{{$competition->prize}}$</td>
@@ -31,5 +29,3 @@
 @if (session('message'))
   <div class="alert">{{ session('message') }}</div>
 @endif
-
-@endsection

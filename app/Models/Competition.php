@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Competition extends Model
 {
-    use HasFactory;
     protected $fillable = ['name', 'date', 'sport', 'prize'];
     public $timestamps = false;
+
+    public static function isAdded($name){
+        $comps = DB::table('competitions')
+        ->where('name', $name)->get();
+
+        return count($comps) !== 0;
+    }
 }

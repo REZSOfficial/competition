@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Round;
+use App\Models\Competitor;
 use App\Models\Competition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +22,8 @@ class CompetitionsController extends Controller
     }
 
     public function show(Competition $competition){
-        $rounds = RoundsController::getRoundsByCompetition($competition);
-        $competitors = CompetitorsController::getCompetitorsByRound($rounds);
+        $rounds = Round::getRoundsByCompetition($competition);
+        $competitors = Competitor::getCompetitorsByRound($rounds);
 
         $data = [
             'competition' => $competition,
@@ -41,22 +43,17 @@ class CompetitionsController extends Controller
             'prize' => ['required'],
         ]);
 
-        if(!CompetitionsController::isAdded($request->name) && $request->prize <= 9999999999){
+        if(!Competition::isAdded($request->name) && $request->prize <= 9999999999){
             $competition = Competition::firstOrCreate($formFields);
-            return response()->json(['message' => 'Competition created successfully']);
+            return response()->json(['message' => 'Competition created successfully', 'redirect' => '/competitions']);
         }else{
-            return redirect('/competitions/create')->with('error', 'Competition name already taken');
+            return response()->json(['message' => 'Competition name already taken!']);
         }
 
         
     }
 
-    public static function isAdded($name){
-        $comps = DB::table('competitions')
-        ->where('name', $name)->get();
-
-        return count($comps) != 0;
-    }
+    
 
     
 }

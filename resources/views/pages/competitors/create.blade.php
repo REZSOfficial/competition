@@ -1,19 +1,17 @@
-@extends('layouts.skeleton')
-@section('content')
-
 <div class="mt-4">
     <h1 style="color: #332D2D;">Add Competitor</h1>
-
-    <form method="POST" action="/competitors">
-        @csrf
+    <form>
           <div class="form-group form-select">
             <label for="select_user">Select User</label>
-            <select name="user" class="form-select form-select-lg mb-3" aria-label="Default select example">
+            <select id="user" name="user" class="form-select form-select-lg mb-3" aria-label="Default select example">
               @foreach ($data['users'] as $user)
-                <option value="{{$user->email}} {{$user->firstname}} {{$user->lastname}}">{{$user->firstname}} {{$user->lastname}}</option>  
+                <!--<option value="{{$user->email}} {{$user->firstname}} {{$user->lastname}}">{{$user->firstname}} {{$user->lastname}}</option>  -->
+                <option value="{{ json_encode(['email' => $user->email, 'firstname' => $user->firstname, 'lastname' => $user->lastname]) }}">{{ $user->firstname }} {{ $user->lastname }}
+              </option>
               @endforeach
             </select>
           </div>
+          <div id="name-error" class="alert alert-danger"></div>
           
 
 
@@ -30,10 +28,8 @@
             <input readonly value="{{$data['round']}}" name="round_competition_round" type="number" class="form-control" id="round_competition_round" aria-describedby="prizeHelp" placeholder="Competition Round">
           </div>
           <input style="display: none" readonly  type="number" name="competition_id" id="competition_id" value="{{$data['competition']->id}}">
-          <button type="submit" class="btn addBtn" onclick="submitForm()">Submit</button>
+          <button type="submit" class="btn addBtn" onclick="submitCreateCompetitorForm()">Submit</button>
         
     </form>
 
 </div>
-
-@endsection
